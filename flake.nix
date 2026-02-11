@@ -7,6 +7,7 @@ in
     home-manager = {
       url = "github:nix-community/home-manager/release-${version}";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -18,15 +19,14 @@ in
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       modules = [
         nixos/configuration.nix
+
+        home-manager.nixosModules.home-manager {
+          home-manager.useGLobalPkgs = true;
+	  home-manager.useUserPackages = true;
+
+	  home-manager.users.user = import home-manager/user/home.nix;
+        }
       ];
-
-      home-manager.nixosModules.home-manager
-      {
-        home-manager.useGLobalPkgs = true;
-	home-manager.useUserPackages = true;
-
-	home-manager.users.user = import home-manager/user/home.nix;
-      }
     };
   };
 }
