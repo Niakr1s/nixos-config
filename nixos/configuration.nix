@@ -6,7 +6,6 @@ in
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    (import "${home-manager}/nixos")
   ];
 
   nix.settings.experimental-features = [
@@ -31,13 +30,6 @@ in
     ];
     hashedPassword = "$y$j9T$EodsGv.t999ySA0pSIUpL0$07kxIslBtsxd2HDWWmmUhM60G4in313bu.2Ym3Z1uA0";
   };
-
-  # home-manager.users.user = {
-    # home.stateVersion = release;
-    # imports = [
-      # ../home-manager/user/home.nix
-    # ];
-  # };
 
   nixpkgs.config = {
     allowUnfree = true;
