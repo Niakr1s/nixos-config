@@ -1,9 +1,6 @@
-let
-  version = "25.11";
-in
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-${version}";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
   };
 
   outputs = { self, nixpkgs, ... }@inputs: {
