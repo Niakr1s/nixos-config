@@ -92,4 +92,8 @@ in
   environment.variables = {
     EDITOR = "vim";
   };
+
+  environment.shellAliases = {
+    update = "sudo nixos-rebuild switch --flake /srv/nixos-config/nixos";
+  };
 }
