@@ -54,7 +54,9 @@ in
 
   environment.systemPackages = with pkgs; [
     tlrc
+    gh
     mc
+    xclip
   ];
 
   programs.bash = {
@@ -80,5 +82,17 @@ in
   programs.git = {
     enable = true;
     prompt.enable = true;
+  };
+
+  programs.firefox = {
+    enable = true;
+    languagePacks = [ "en-US" ];
+
+    policies = {
+      AppAutoUpdate = false;
+      BackgroundAppUpdate = false;
+
+      DisableTelemetry = true;
+    };
   };
 }
