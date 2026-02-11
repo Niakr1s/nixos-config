@@ -7,4 +7,4 @@ Run chown command
 `sudo chown -R user:wheel /srv/nixos-config`
 
 Symlink configuration.nix to /etc/nixos/configuration.nix
-`sudo ln -s /srv/nixos-config/configuration.nix /etc/nixos/configuration.nix`
+`sudo ln -s /srv/nixos-config/nixos/configuration.nix /etc/nixos/configuration.nix`
