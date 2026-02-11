@@ -15,7 +15,7 @@ in
 
   boot.loader.systemd-boot.enable = true;
 
-  # services.sshd.enable = true;
+  services.sshd.enable = true;
 
   users.users.user = {
     isNormalUser = true;
