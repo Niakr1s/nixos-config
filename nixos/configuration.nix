@@ -10,6 +10,11 @@ in
     (import "${home-manager}/nixos")
   ];
 
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes" 
+  ];
+
   system.stateVersion = release;
   time.timeZone = "Europe/Moscow";
 
@@ -41,10 +46,6 @@ in
 
   # Desktop environment
 
-  services.desktopManager.plasma6 = {
-    enable = true;
-  };
-
   services.displayManager = {
     sddm = {
       enable = true;
@@ -52,36 +53,28 @@ in
     };
   };
 
-  environment.systemPackages = with pkgs; [
-    tlrc
-    gh
-    mc
-    xclip
-  ];
+  services.desktopManager.plasma6.enable = true;
 
-  programs.bash = {
-    enable = true;
-    shellAliases = {
-    };
-    # blesh.enable = true;
-  };
-
-  programs.neovim = {
-    enable = true;
-    defaultEditor = true;
-    viAlias = true;
-    vimAlias = true;
-  };
-  
   programs.hyprland = {
     enable = true;
     withUWSM = true;
     xwayland.enable = true;
   };
 
-  programs.git = {
+  environment.systemPackages = with pkgs; [
+    git
+    wget
+    tlrc
+    gh
+    mc
+    xclip
+  ];
+
+  programs.neovim = {
     enable = true;
-    prompt.enable = true;
+    defaultEditor = true;
+    viAlias = true;
+    vimAlias = true;
   };
 
   programs.firefox = {
@@ -94,5 +87,9 @@ in
 
       DisableTelemetry = true;
     };
+  };
+
+  environment.variables = {
+    EDITOR = "vim";
   };
 }
