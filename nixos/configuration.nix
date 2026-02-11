@@ -1,6 +1,7 @@
 { config, pkgs, ... }:
 let
-  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-25.11.tar.gz";
+  release = "25.11"; # set this according to iso version
+  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-${release}.tar.gz";
 in
 {
   imports = [
@@ -9,7 +10,7 @@ in
     (import "${home-manager}/nixos")
   ];
 
-  system.stateVersion = "25.11";
+  system.stateVersion = release;
   time.timeZone = "Europe/Moscow";
 
   boot.loader.systemd-boot.enable = true;
@@ -28,7 +29,7 @@ in
   };
 
   home-manager.users.user = {
-    home.stateVersion = "25.11";
+    home.stateVersion = release;
     imports = [
       ../home-manager/user/home.nix
     ];
