@@ -15,9 +15,9 @@
 
         home-manager.nixosModules.home-manager {
           home-manager.useGlobalPkgs = true;
-	  home-manager.useUserPackages = true;
+	        home-manager.useUserPackages = true;
 
-	  home-manager.users.user = home-manager/user/home.nix;
+	        home-manager.users.user = home-manager/user/home.nix;
         }
       ];
     };

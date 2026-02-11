@@ -58,6 +58,7 @@
     mc
     xclip
     mpd
+    tree-sitter
   ];
 
   programs.neovim = {
@@ -68,21 +69,18 @@
     configure = {
       customRC = ''
         set number
-	set relativenumber
-	set expandtab
-	set tabstop=2
-	set shiftwidth=2
-	colorscheme desert
+	      set relativenumber
+	      set expandtab
+	      set tabstop=2
+	      set shiftwidth=2
+	      colorscheme default
       '';
-      plugins = with pkgs.vimPlugins; [
-        {
-	  plugin = vim-startify;
-	}
-	{
-	  plugin = nvim-treesitter;
-	}
-	nvim-treesitter.withAllGrammars
-      ];
+      packages.myVimPackage = with pkgs.vimPlugins; {
+        start = [
+          vim-startify
+          nvim-treesitter
+        ];
+      };
     };
   };
 
