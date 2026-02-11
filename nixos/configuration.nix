@@ -47,7 +47,7 @@
     enable = true;
     shellAliases = {
     };
-    blesh.enable = true;
+    # blesh.enable = true;
   };
 
   programs.neovim = {
