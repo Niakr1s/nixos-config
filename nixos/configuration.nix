@@ -41,6 +41,7 @@
 
   environment.systemPackages = with pkgs; [
     tlrc
+    mc
   ];
 
   programs.bash = {
