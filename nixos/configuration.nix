@@ -59,6 +59,9 @@ in
     gh
     mc
     xclip
+    tar
+    curl
+    mpd
   ];
 
   programs.neovim = {
@@ -66,6 +69,21 @@ in
     defaultEditor = true;
     viAlias = true;
     vimAlias = true;
+    configure = {
+      customRC = ''
+        set number
+	set relativenumber
+	set expandtab
+	set tabstop=2
+	set shiftwidth=2
+	colorscheme desert
+      '';
+      packages.myVimPackage = with pkgs.vimPlugins; {
+        nvim-treesitter.withallGrammars
+	telescope-nvim
+	lualine-nvim
+      };
+    };
   };
 
   programs.firefox = {
