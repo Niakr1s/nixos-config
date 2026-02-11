@@ -1,7 +1,6 @@
 { config, pkgs, ... }:
 let
   release = "25.11"; # set this according to iso version
-  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-${release}.tar.gz";
 in
 {
   imports = [
@@ -33,12 +32,12 @@ in
     hashedPassword = "$y$j9T$EodsGv.t999ySA0pSIUpL0$07kxIslBtsxd2HDWWmmUhM60G4in313bu.2Ym3Z1uA0";
   };
 
-  home-manager.users.user = {
-    home.stateVersion = release;
-    imports = [
-      ../home-manager/user/home.nix
-    ];
-  };
+  # home-manager.users.user = {
+    # home.stateVersion = release;
+    # imports = [
+      # ../home-manager/user/home.nix
+    # ];
+  # };
 
   nixpkgs.config = {
     allowUnfree = true;
@@ -94,6 +93,6 @@ in
   };
 
   environment.shellAliases = {
-    update = "sudo nixos-rebuild switch --flake /srv/nixos-config/nixos";
+    update = "sudo nixos-rebuild switch --flake /srv/nixos-config";
   };
 }
