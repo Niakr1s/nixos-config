@@ -85,6 +85,6 @@ in
   };
 
   environment.shellAliases = {
-    update = "sudo nixos-rebuild switch --flake github:niakr1s/nixos-config";
+    update = "sudo nixos-rebuild switch --flake /srv/nixos-config";
   };
 }
