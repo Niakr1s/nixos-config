@@ -1,30 +1,23 @@
-let
-  version = "25.11";
-in
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-${version}";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
     home-manager = {
-      url = "github:nix-community/home-manager/release-${version}";
+      url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    home-manager,
-    ... }@inputs:
+  outputs = inputs@{ self, nixpkgs, home-manager, ... }:
   {
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       modules = [
         nixos/configuration.nix
 
         home-manager.nixosModules.home-manager {
-          home-manager.useGLobalPkgs = true;
+          home-manager.useGlobalPkgs = true;
 	  home-manager.useUserPackages = true;
 
-	  home-manager.users.user = import home-manager/user/home.nix;
+	  home-manager.users.user = home-manager/user/home.nix;
         }
       ];
     };

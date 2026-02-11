@@ -1,19 +1,17 @@
 { config, pkgs, ... }:
-let
-  release = "25.11"; # set this according to iso version
-in
 {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
   ];
 
+  system.stateVersion = "25.11";
+
   nix.settings.experimental-features = [
     "nix-command"
     "flakes" 
   ];
 
-  system.stateVersion = release;
   time.timeZone = "Europe/Moscow";
 
   boot.loader.systemd-boot.enable = true;
@@ -59,8 +57,6 @@ in
     gh
     mc
     xclip
-    tar
-    curl
     mpd
   ];
 
@@ -78,11 +74,15 @@ in
 	set shiftwidth=2
 	colorscheme desert
       '';
-      packages.myVimPackage = with pkgs.vimPlugins; {
-        nvim-treesitter.withallGrammars
-	telescope-nvim
-	lualine-nvim
-      };
+      plugins = with pkgs.vimPlugins; [
+        {
+	  plugin = vim-startify;
+	}
+	{
+	  plugin = nvim-treesitter;
+	}
+	nvim-treesitter.withAllGrammars
+      ];
     };
   };
 
