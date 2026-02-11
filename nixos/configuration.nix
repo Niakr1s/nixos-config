@@ -11,9 +11,9 @@
 
   # services.sshd.enable = true;
 
-  users.users.nea = {
+  users.users.user = {
     isNormalUser = true;
-    home = "/home/nea";
+    home = "/home/user";
     uid = 1000;
     extraGroups = [
       "wheel"
@@ -46,7 +46,6 @@
   programs.bash = {
     enable = true;
     shellAliases = {
-      ll = "ls -l";
     };
     blesh.enable = true;
   };
