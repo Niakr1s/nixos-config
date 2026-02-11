@@ -1,7 +1,12 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, ... }:
+let
+  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-25.11.tar.gz";
+in
+{
   imports = [
     # Include the results of the hardware scan.
     /etc/nixos/hardware-configuration.nix
+    (import "${home-manager}/nixos")
   ];
 
   system.stateVersion = "25.11";
@@ -20,6 +25,13 @@
       "newtorkmanager"
     ];
     hashedPassword = "$y$j9T$EodsGv.t999ySA0pSIUpL0$07kxIslBtsxd2HDWWmmUhM60G4in313bu.2Ym3Z1uA0";
+  };
+
+  home-manager.users.user = {
+    home.stateVersion = "25.11";
+    imports = [
+      ../home-manager/user/home.nix
+    ];
   };
 
   nixpkgs.config = {
